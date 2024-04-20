@@ -2,6 +2,9 @@ import {
   FolderIcon,
   ListBulletIcon,
   UsersIcon,
+  ChartPieIcon,
+  QueueListIcon
+  
 } from "@heroicons/react/24/solid";
 
 export const navbarRoutes = [
@@ -26,20 +29,20 @@ export const dashboardRoutes = [
   {
     href: "/dashboard",
     text: "Dashboard",
-    icon: FolderIcon,
+    icon: ChartPieIcon,
     roles: ["admin", "user"],
   },
   {
     href: "/dashboard/profile",
     text: "Profile",
     roles: ["admin", "user"],
-    icon: FolderIcon,
+    icon: UsersIcon,
   },
   {
     href: "/dashboard/products",
     text: "Productos",
     roles: ["admin", "user"],
-    icon: FolderIcon,
+    icon: QueueListIcon,
   },
   {
     href: "/dashboard/categories",

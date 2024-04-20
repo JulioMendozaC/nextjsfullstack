@@ -1,48 +1,28 @@
-import Link from "next/link";
-import { navbarRoutes } from "@/routes/navbarRoutes";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/libs/authOptions";
 
-export const dynamic = "force-dynamic";
+'use client'
+import { Bars3Icon } from "@heroicons/react/20/solid";
+import SwitchMode from './dashboard/SwitchMode';
 
-async function Navbar() {
-  const session = await getServerSession(authOptions);
+
+function Navbar({ event }: any) {
 
   return (
-    <nav className="flex justify-between px-20 bg-slate-300 py-2">
-      {/* logo */}
-      <h1>NextjsFull</h1>
+    <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-white/5 bg-gray-900 px-4 shadow-sm sm:px-6 lg:px-8 border-b-2 border-gray-200">
+      <button
+        type="button"
+        className="-m-2.5 p-2.5 text-white xl:hidden"
+        onClick={() => event(true)}
+      >
+        <span className="sr-only">Open sidebar</span>
+        <Bars3Icon className="h-5 w-5" aria-hidden="true" />
+      </button>
 
-      {/* opciones */}
-      <ul className="flex gap-x-3">
-        {session && (
-          <>
-            {navbarRoutes.map(
-              (route) =>
-                route?.auth && (
-                  <li key={route.href}>
-                    <Link href={route.href}>{route.text}</Link>
-                  </li>
-                )
-            )}
+      <div className="flex flex-1 justify-between gap-x-4 self-stretch lg:gap-x-6">
+        <div></div>
+        <SwitchMode />
+      </div>
 
-            <li>
-              Hi {session?.user?.name} {session.user.lastname}!
-            </li>
-          </>
-        )}
-
-        {!session &&
-          navbarRoutes.map(
-            (route) =>
-              !route.auth && (
-                <li key={route.href}>
-                  <Link href={route.href}>{route.text}</Link>
-                </li>
-              )
-          )}
-      </ul>
-    </nav>
+    </div>
   );
 }
 
